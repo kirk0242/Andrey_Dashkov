@@ -2,5 +2,4 @@
 #define PALINDROME_H_GUARD
 
 char* palindrome(char* str);
-
 #endif

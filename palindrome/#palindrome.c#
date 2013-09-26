@@ -11,7 +11,6 @@ char* str_reverse(char* str) {
   len = strlen(str);
   
   result = calloc(len+1, sizeof(char));
-  /* allocate 1 */
   for (i=0; i<len; ++i) {
     result[i] = str[len-i-1];
   }
@@ -29,7 +28,6 @@ char* palindrome(char* str) {
   rev = str_reverse(str);
   i = 0;
   while (result && str[i]) {
-    /* uses allocate 1 */
     if (str[i] != rev[i]) {
       result = false;
     }
