@@ -1,0 +1,58 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include "mergesort.h"
+
+void mergesort(int size, int values[]){
+  mergesortRange(values, 0, size);
+}
+
+void mergesortRange(int values[], int startIndex, int endIndex){
+  int rangeSize;
+  rangeSize = endIndex - startIndex;
+  if(needsSort(rangeSize)){
+    int midpoint;
+    midpoint = (startIndex + endIndex) / 2;
+    mergesortRange(values, startindex, midPoint);
+    mergesortRange(values, midpoint, endIndex);
+    mergeRanges(values, startIndex, midPoint, endIndex);
+  }
+}
+
+void mergeRanges(int values[], int startIndex, int midPoint, int endIndex) {
+  int rangeSize, firstIndex, secondIndex, copyIndex, i;
+  rangeSize = endIndex - startIndex;
+  char* destination;
+  destination = calloc(rangeSize, sizeof(int));
+  firstIndex = startIndex;
+  secondIndex = midPoint;
+  copyIndex = 0;
+  while (firstIndex < midPoint && secondIndex < endIndex){
+    if (values[firstIndex] < values[secondIndex]) {
+      destination[copyIndex] = values[firstIndex];
+      ++firstIndex;
+    } else {
+      destination[copyIndex] = values[secondIndex];
+      ++secondIndex;
+    }
+    ++copyIndex;
+  }
+  while (firstIndex < midPoint) {
+    destination[copyIndex] = values[firstIndex];
+    ++copyIndex;
+    ++firstIndex;
+  }
+  while (secondIndex < endIndex) {
+    destination[copyIndex] = values[secondIndex];
+    ++copyIndex;
+    ++secondIndex;
+  }
+  for (i = 0; i < rangeSize; i++){
+    values[i + startIndex] = destination[i];
+  }
+}
+
+boolean needsSort(int rangeSize) {
+  return rangeSize >= 2;
+}
