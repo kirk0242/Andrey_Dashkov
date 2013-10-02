@@ -11,13 +11,12 @@ int* array_merge(int num_arrays, int* sizes, int** values){
   int i, j, total;
   int *unique;
   int *final_array;
-  int *array;
   total = 0;
   for(i = 0; i < num_arrays; i++){
     total += sizes[i];
   }
   
-  array = calloc(total, sizeof(int));
+  int* array = calloc(total, sizeof(int));
 
   for(i = 0; i < num_arrays; i++){
     for(j = 0; j < sizes[i]; j++){
